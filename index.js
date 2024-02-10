@@ -8,7 +8,6 @@ const pagearray = ['https://rule34.xxx/index.php?page=post&s=list&tags=grimm_%28
 const { Client, GatewayIntentBits, Partials, Events } = require('discord.js'); 
 const client = new Client({ intents: [GatewayIntentBits.Guilds], partials: [Partials.Channel] });
 const token =  ''  // PUT YOUR TOKEN HERE
-const channel = '' // DO NOT PUT THIS AS AN INTEGER! IT MUST BE A STRING!
 const sleep = (waitTimeInMs) => new Promise(resolve => setTimeout(resolve, waitTimeInMs));
 
 
@@ -30,7 +29,7 @@ async function data(){
   function fetchnumber(number, html) { 
     let ind = html.substring(index(html,`<img src="https://us`, number)) 
     let ind2 = ind.substring(10, index(ind,`" `, 1)) 
-    const channel = client.channels.cache.get(channel) 
+    const channel = client.channels.cache.get('')  //PUT YOUR CHANNEL HERE! WILL NOT WORK IF YOU DO NOT DO THIS!
     channel.send(ind2)
     sleep(5000).then(() => {
       console.log('Fetched link', ind2)  

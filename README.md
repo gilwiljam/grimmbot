@@ -19,6 +19,9 @@ https://nodejs.org/en
 Instructions:
 
 `$ git clone https://github.com/gilwiljam/grimmbot && cd grimmbot`  
+
 `Replace const token with your token for your bot.` 
+
 `$ node index.js`
-If you would like it to run a set period of time (on linux) use watch -n <seconds> node index.js.
+
+If you would like it to run a set period of time (on linux) use `$ watch -n <seconds> node index.js`

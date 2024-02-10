@@ -1,5 +1,5 @@
 //LICENSED UNDER THE GNU GPLv3
-//GIT REPO: 
+//GIT REPO: https://github.com/gilwiljam/grimmbot
 //CREATED BY GILWILJAM
 
 
@@ -7,7 +7,8 @@
 const pagearray = ['https://rule34.xxx/index.php?page=post&s=list&tags=grimm_%28hollow_knight%29&pid=0', 'https://rule34.xxx/index.php?page=post&s=list&tags=grimm_%28hollow_knight%29&pid=42', 'https://rule34.xxx/index.php?page=post&s=list&tags=grimm_%28hollow_knight%29&pid=84', 'https://rule34.xxx/index.php?page=post&s=list&tags=grimm_%28hollow_knight%29&pid=126', 'https://rule34.xxx/index.php?page=post&s=list&tags=grimm_%28hollow_knight%29&pid=168']
 const { Client, GatewayIntentBits, Partials, Events } = require('discord.js'); 
 const client = new Client({ intents: [GatewayIntentBits.Guilds], partials: [Partials.Channel] });
-const token =  ''  
+const token =  ''  // PUT YOUR TOKEN HERE
+const channel = '' // DO NOT PUT THIS AS AN INTEGER! IT MUST BE A STRING!
 const sleep = (waitTimeInMs) => new Promise(resolve => setTimeout(resolve, waitTimeInMs));
 
 
@@ -21,16 +22,15 @@ function index(string, subString, index) {
   
 async function data(){   
   let pagenumber = Math.floor(Math.random() * (4 - 0) + 1) //If you wish to add more page numbers,  
-  let imgnumber = Math.floor(Math.random() * (42 - 1))
+  let imgnumber = Math.floor(Math.random() * (42 - 1) + 1) //42 images per page.
   console.log(imgnumber) 
   const res = await fetch(pagearray.at(pagenumber))
   html = await res.text()   
   fetchnumber(imgnumber, html)
   function fetchnumber(number, html) { 
     let ind = html.substring(index(html,`<img src="https://us`, number)) 
-    let ind2 = ind.substring(10, index(ind,`" `, 1))
-    writeFile('link.txt',ind2,'utf-8')    
-    const channel = client.channels.cache.get('1203781669786484817')
+    let ind2 = ind.substring(10, index(ind,`" `, 1)) 
+    const channel = client.channels.cache.get(channel) 
     channel.send(ind2)
     sleep(5000).then(() => {
       console.log('Fetched link', ind2)  
@@ -47,11 +47,7 @@ client.on(Events.ClientReady, readyClient => {
   data()
     });
 
-
-
-
-
-writeFile('balls.txt', "")  
+  
 
 
 client.login(token);
